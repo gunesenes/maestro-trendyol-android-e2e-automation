@@ -1,0 +1,158 @@
+appId: trendyol.com
+---
+- launchApp:
+    clearState: true
+
+# --- Uygulama Açılış ve Arama Başlangıcı ---
+- tapOn:
+    id: buttonDismiss # Varsa başlangıç reklamını kapatır
+- tapOn: Arama
+- tapOn: Marka, ürün veya kategori ara
+- inputText: "kazak"
+- pressKey: Enter
+
+# --- Ürün Listeleme ve İlk Seçim ---
+- tapOn:
+    point: 51%,48% # Olası pop-up'ları boşluğa tıklayarak kapatır
+- scroll
+- scroll
+- tapOn:
+    id: imageViewProduct
+    index: 0 # Listenin en başındaki ilk ürüne tıkla
+
+# --- Sepet İşlemleri (Ekle/Sil Kontrolü) ---
+- scroll
+- tapOn: Sepete Ekle
+- tapOn: Sepete Ekle
+- doubleTapOn:
+    point: 0%,5% # Menüye hızlı dönüş için köşe tıklaması
+- tapOn:
+    id: image_add # Ürün adedini artır
+- tapOn:
+    id: image_subtract # Ürün adedini azalt
+- tapOn: Ürünü sil
+- tapOn: Sil
+
+# --- Login (Giriş Yap) Akışı ---
+- tapOn:
+    id: buttonAction
+- tapOn:
+    id: imageViewIcon # Profil/Hesabım ikonu
+- tapOn:
+    id: loginButton
+- tapOn: Kapat # Varsa login öncesi çıkan bilgilendirme
+- tapOn:
+    id: editTextEmail
+- inputText: "KENDI_MAILIN@gmail.com"
+- tapOn:
+    id: buttonContinue
+- tapOn:
+    id: editTextPassword
+- tapOn:
+    id: autofill_dialog_no # Google şifre kaydetme uyarısını kapatır
+- inputText: "KENDI_SIFREN"
+- tapOn:
+    id: buttonLogin
+
+# --- Kategori ve Filtreleme Operasyonları ---
+- tapOn:
+    id: sectionImageView
+- tapOn:
+    id: mainCategoryGridItem_2
+- tapOn:
+    id: CategoryGridItemImage
+    index: 3
+- tapOn:
+    id: textViewOpenFilterSearchFilterSortingName # Sıralama menüsü
+- tapOn:
+    id: radioButtonSortingTypeItem
+    index: 3 # Belirli bir sıralama tipini seç (Örn: En düşük fiyat)
+- tapOn:
+    id: openFilterDropDownIcon
+- tapOn:
+    id: checkBoxOpenFilterAttribute
+    index: 0
+- tapOn:
+    id: buttonApplyFilterListing
+- tapOn: Beden
+- tapOn:
+    id: card_view
+    index: 2 # 3. bedeni seç
+- tapOn:
+    id: btnApplyFilter
+
+# --- Ürün Detay Etkileşimleri (Swipe/Görsel Kontrol) ---
+- scroll
+- tapOn:
+    id: imageViewProduct
+    index: 3
+- tapOn:
+    id: imageViewFavorite # Favorilere ekle
+- swipe: # Resimler arası sağa kaydırma
+    from:
+      id: layoutStamp
+    start: "90%, 40%"
+    end: "10%, 40%"
+    duration: 500
+- swipe: # Resimler arası sola geri dönüş
+    start: "10%, 40%"
+    end: "90%, 40%"
+    duration: 400
+
+# --- Adres Ekleme ve Teslimat Bilgileri ---
+- scroll
+- tapOn:
+    id: cityAndDistrictText
+- tapOn:
+    id: cityText
+- tapOn: İl ara
+- inputText: "istanbul"
+- tapOn:
+    text: İstanbul
+    index: 1
+- tapOn:
+    id: continueButtonText
+- tapOn: "Adres"
+- inputText: "Maestro Kapsamli Trendyol App Testi"
+- scroll
+- tapOn:
+    id: freeTextComponentaddressName # Adres Başlığı
+- inputRandomText: # Dinamik adres ismi üretimi
+    length: 8
+- scroll
+- tapOn:
+    id: buttonSave
+
+# --- Sepet Onay ve Ödeme Öncesi Kontroller ---
+- tapOn:
+    id: UseDiscountCodeItemTestTag # İndirim kodu alanı
+- tapOn:
+    id: autofill_dialog_no
+- inputText: "TestKod123"
+- tapOn: Uygula
+- tapOn:
+    id: composeViewApproveBasket # Sepeti onayla
+
+# --- Hesap Ayarları ve Testi Temizleme (Cleanup) ---
+- tapOn:
+    id: tab_account
+- scroll
+- scroll
+- tapOn: Hesap Ayarlarım
+- tapOn:
+    id: SettingsListItem
+    index: 1
+- tapOn:
+    id: imageViewEdit
+- scroll
+- tapOn:
+    id: buttonDelete # Hesabı silme/kapatma (Senaryo gereği)
+- tapOn:
+    id: button1 # Onay
+
+# --- Çıkış Yap ve Bitir ---
+- tapOn: Hesap Ayarlarım
+- scroll
+- tapOn: Çıkış Yap
+- tapOn:
+    id: button1 # Çıkışı onayla
