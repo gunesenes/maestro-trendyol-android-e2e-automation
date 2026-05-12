@@ -2,71 +2,61 @@ appId: trendyol.com
 ---
 - launchApp:
     clearState: true
-
-# --- Uygulama Açılış ve Arama Başlangıcı ---
 - tapOn:
-    id: buttonDismiss # Varsa başlangıç reklamını kapatır
+    id: buttonDismiss 
 - tapOn: Arama
 - tapOn: Marka, ürün veya kategori ara
 - inputText: "kazak"
 - pressKey: Enter
-
-# --- Ürün Listeleme ve İlk Seçim ---
-- tapOn:
-    point: 51%,48% # Olası pop-up'ları boşluğa tıklayarak kapatır
-- scroll
-- scroll
 - tapOn:
     id: imageViewProduct
-    index: 0 # Listenin en başındaki ilk ürüne tıkla
-
-# --- Sepet İşlemleri (Ekle/Sil Kontrolü) ---
+    index: 1 
 - scroll
 - tapOn: Sepete Ekle
 - tapOn: Sepete Ekle
 - doubleTapOn:
-    point: 0%,5% # Menüye hızlı dönüş için köşe tıklaması
+    point: 0%,5% 
 - tapOn:
-    id: image_add # Ürün adedini artır
+    id: image_add 
 - tapOn:
-    id: image_subtract # Ürün adedini azalt
+    id: image_subtract 
 - tapOn: Ürünü sil
 - tapOn: Sil
-
-# --- Login (Giriş Yap) Akışı ---
 - tapOn:
     id: buttonAction
 - tapOn:
-    id: imageViewIcon # Profil/Hesabım ikonu
+    id: imageViewIcon 
 - tapOn:
     id: loginButton
-- tapOn: Kapat # Varsa login öncesi çıkan bilgilendirme
+- tapOn: Kapat 
 - tapOn:
     id: editTextEmail
-- inputText: "KENDI_MAILIN@gmail.com"
+- inputText: "ahmetcan54677@gmail.com"
 - tapOn:
     id: buttonContinue
 - tapOn:
     id: editTextPassword
 - tapOn:
-    id: autofill_dialog_no # Google şifre kaydetme uyarısını kapatır
-- inputText: "KENDI_SIFREN"
+    id: autofill_dialog_no 
+    optional: true
+- inputText: "Kayseri38tr."
 - tapOn:
     id: buttonLogin
-
-# --- Kategori ve Filtreleme Operasyonları ---
 - tapOn:
-    id: sectionImageView
+   id: autofill_save_no
+   optional: true
+- tapOn:
+    id: searchBarCategoryImageView
 - tapOn:
     id: mainCategoryGridItem_2
 - tapOn:
     id: CategoryGridItemImage
     index: 3
 - tapOn:
-    id: textViewOpenFilterSearchFilterSortingName # Sıralama menüsü
+    id: textViewOpenFilterSearchFilterSortingName 
 - tapOn:
     id: radioButtonSortingTypeItem
-    index: 3 # Belirli bir sıralama tipini seç (Örn: En düşük fiyat)
+    index: 3 
 - tapOn:
     id: openFilterDropDownIcon
 - tapOn:
@@ -74,32 +64,28 @@ appId: trendyol.com
     index: 0
 - tapOn:
     id: buttonApplyFilterListing
-- tapOn: Beden
 - tapOn:
-    id: card_view
-    index: 2 # 3. bedeni seç
+    id: textViewOpenFilterName
+    index: 1
 - tapOn:
-    id: btnApplyFilter
-
-# --- Ürün Detay Etkileşimleri (Swipe/Görsel Kontrol) ---
-- scroll
+    id: checkBoxOpenFilterAttribute
+    index: 13
+- tapOn: Uygula
 - tapOn:
     id: imageViewProduct
-    index: 3
+    index: 1
 - tapOn:
-    id: imageViewFavorite # Favorilere ekle
-- swipe: # Resimler arası sağa kaydırma
+    id: imageViewFavorite 
+- swipe: 
     from:
       id: layoutStamp
     start: "90%, 40%"
     end: "10%, 40%"
     duration: 500
-- swipe: # Resimler arası sola geri dönüş
+- swipe: 
     start: "10%, 40%"
     end: "90%, 40%"
     duration: 400
-
-# --- Adres Ekleme ve Teslimat Bilgileri ---
 - scroll
 - tapOn:
     id: cityAndDistrictText
@@ -112,47 +98,107 @@ appId: trendyol.com
     index: 1
 - tapOn:
     id: continueButtonText
-- tapOn: "Adres"
-- inputText: "Maestro Kapsamli Trendyol App Testi"
-- scroll
+- tapOn: İlçe ara
+- inputText: "Esenler"
 - tapOn:
-    id: freeTextComponentaddressName # Adres Başlığı
-- inputRandomText: # Dinamik adres ismi üretimi
-    length: 8
-- scroll
-- tapOn:
-    id: buttonSave
-
-# --- Sepet Onay ve Ödeme Öncesi Kontroller ---
-- tapOn:
-    id: UseDiscountCodeItemTestTag # İndirim kodu alanı
-- tapOn:
-    id: autofill_dialog_no
-- inputText: "TestKod123"
-- tapOn: Uygula
-- tapOn:
-    id: composeViewApproveBasket # Sepeti onayla
-
-# --- Hesap Ayarları ve Testi Temizleme (Cleanup) ---
-- tapOn:
-    id: tab_account
-- scroll
-- scroll
-- tapOn: Hesap Ayarlarım
-- tapOn:
-    id: SettingsListItem
+    text: Esenler
     index: 1
 - tapOn:
-    id: imageViewEdit
-- scroll
+    id: continueButtonText
 - tapOn:
-    id: buttonDelete # Hesabı silme/kapatma (Senaryo gereği)
+    id: saveButtonText
 - tapOn:
-    id: button1 # Onay
-
-# --- Çıkış Yap ve Bitir ---
-- tapOn: Hesap Ayarlarım
-- scroll
+    id: primaryButtonText
+- tapOn:
+    id: primaryButtonText
+- tapOn:
+    id: UseDiscountCodeItemTestTag
+- tapOn:
+    id: "autofill_dialog_no"
+    optional: true
+- inputText: "Test123"
+- tapOn: Uygula
+- tapOn:
+    id: composeViewApproveBasket
+- tapOn: Trendyol Plus’ı Almadan Devam Et
+- tapOn:
+    id: editTextOwnerName
+- inputText: "Enes"
+- tapOn:
+    id: editTextOwnerSurname
+- inputText: "Gunes"
+- tapOn:
+    id: editTextPhoneNumber
+- inputText: "05554443322"
+- tapOn:
+    id: dropDownComponentcityId
+- tapOn:
+    id: textInputEditTextSearch
+- inputText: "istanbul"
+- tapOn:
+    text: İstanbul
+    index: 1
+- tapOn:
+    id: textInputEditTextSearch
+- inputText: "esenler"
+- tapOn:
+    text: esenler
+    index: 1
+- tapOn:
+    id: textInputEditTextSearch
+- inputText: "davut"
+- tapOn: Davutpaşa Mah
+- scrollUntilVisible:
+    element:
+      id: buttonSave
+- tapOn: Adres
+- inputText: "Maestro E2E Aututomation"
+- back
+- tapOn:
+    id: freeTextComponentaddressName
+- tapOn:
+    id: "autofill_dialog_no"
+    optional: true
+- inputText: ${"Test" + Math.floor(Math.random() * 999 + 1)}
+- back
+- tapOn:
+    id: buttonSave
+- waitForAnimationToEnd:
+    timeout: 2500
+- back
+- back
+- tapOn:
+    id: button1
+- tapOn:
+    id: "autofill_save_no"
+    optional: true
+- tapOn:
+    id: imageViewDeleteProduct
+- tapOn:
+    id: textViewBasketRemoveAction
+- tapOn:
+    id: imageViewIcon
+    index: 3
+- tapOn:
+    id: OnboardingPopUpCloseIcon
+    optional: true
+- tapOn:
+    id: GenderSelectionDismissButton
+    optional: true
+- scrollUntilVisible:
+    element:
+      id: imageViewNavigationArrow
+      index: 9
+- tapOn:
+    id: imageViewNavigationArrow
+    index: 11
+- tapOn:
+    id: CloseIcon
+    optional: true
+- scrollUntilVisible:
+    element:
+      id: SettingsListItem
+      index: 9
 - tapOn: Çıkış Yap
 - tapOn:
-    id: button1 # Çıkışı onayla
+    id: button1
